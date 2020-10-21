@@ -1,0 +1,25 @@
+# dependencies
+node_modules
+/node_modules
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# database config
+ormconfig.json
+
+# foders content
+!tmp/uploads/default.png
+!tmp/default.png
+tmp/uploads/**
