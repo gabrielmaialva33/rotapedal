@@ -7,9 +7,9 @@ const bikesRoutes = Router();
 
 bikesRoutes.use(ensureAuthenticated);
 
-bikesRoutes.get('/bike', BikeController.show);
-bikesRoutes.post('/bike', BikeController.create);
-bikesRoutes.put('/bike/:bike_id', BikeController.update);
-bikesRoutes.delete('/bike/:bike_id', BikeController.delete);
+bikesRoutes.get('/bikes', BikeController.show);
+bikesRoutes.post('/bikes', BikeController.create);
+bikesRoutes.put('/bikes/:bike_id', BikeController.update);
+bikesRoutes.delete('/bikes/:bike_id', BikeController.delete);
 
 export default bikesRoutes;

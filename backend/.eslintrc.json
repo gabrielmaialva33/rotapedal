@@ -17,7 +17,7 @@
   },
   "plugins": ["@typescript-eslint", "prettier", "typeorm"],
   "rules": {
-    //"no-console": "off",
+    "no-console": "off",
     "prettier/prettier": "error",
     "class-methods-use-this": "off",
     "no-useless-constructor": "off",

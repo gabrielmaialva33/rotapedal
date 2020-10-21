@@ -29,7 +29,10 @@ export default {
       destination: tmpFolder,
       filename(request, file, callback) {
         const fileHash = crypto.randomBytes(10).toString('hex');
-        const filename = `${fileHash}-${file.originalname}`;
+        const filename = `${fileHash}-${file.originalname
+          .toString()
+          .trim()
+          .replace(' ', '_')}`;
         return callback(null, filename);
       },
     }),

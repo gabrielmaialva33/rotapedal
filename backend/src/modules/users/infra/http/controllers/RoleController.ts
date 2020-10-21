@@ -6,7 +6,7 @@ import UpdateRoleService from '@modules/users/services/user/UpdateRoleService';
 import AppError from '@shared/errors/AppError';
 import { SchemaAddRole } from '@modules/users/infra/http/controllers/validations/UserSchema';
 
-class UpdateRoleController {
+class RoleController {
   public async update(request: Request, response: Response): Promise<Response> {
     //* schema validation
     if (!(await SchemaAddRole.isValid(request.body))) {
@@ -24,4 +24,4 @@ class UpdateRoleController {
   }
 }
 
-export default new UpdateRoleController();
+export default new RoleController();

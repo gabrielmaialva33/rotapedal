@@ -33,7 +33,7 @@ export default class CreateTeams1594532776503 implements MigrationInterface {
           },
           {
             name: 'description',
-            type: 'varchar',
+            type: 'text',
             isNullable: true,
           },
           {

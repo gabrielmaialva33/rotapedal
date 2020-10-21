@@ -24,12 +24,12 @@ class UpdateRoleService {
 
     const user = await this.userRepository.findById(user_id);
     if (!user) {
-      throw new AppError('Modera not found', 404);
+      throw new AppError('User not found', 404);
     }
     if (!(user.role === 'moderator' || user.role === 'admin')) {
       throw new AppError('Unauthorized user', 401);
     }
-    console.log(email);
+
     const newUserRole = await this.userRepository.findByEmail(email);
 
     if (!newUserRole) {
