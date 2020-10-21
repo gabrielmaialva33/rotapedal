@@ -47,7 +47,7 @@ class CreateEventService {
     if (!user) {
       throw new AppError('User not found', 404);
     }
-    if (!(user.role === ('supporter' || 'admin'))) {
+    if (!(user.role === 'admin' || user.role === 'supporter')) {
       throw new AppError('User not permitted', 401);
     }
 

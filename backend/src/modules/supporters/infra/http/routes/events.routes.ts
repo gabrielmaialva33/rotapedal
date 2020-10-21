@@ -6,6 +6,7 @@ import EventController from '@modules/supporters/infra/http/controllers/EventCon
 const eventsRoutes = Router();
 
 eventsRoutes.get('/:event_id', EventController.show);
+
 eventsRoutes.use(ensureAuthenticated);
 eventsRoutes.post('/:supporter_id', EventController.create);
 eventsRoutes.put('/:supporter_id/:event_id', EventController.update);

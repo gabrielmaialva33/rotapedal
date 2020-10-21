@@ -34,7 +34,7 @@ class UpdateLogoService {
     if (!user) {
       throw new AppError('User not found', 401);
     }
-    if (!(user.role === ('supporter' || 'admin'))) {
+    if (!(user.role === 'admin' || user.role === 'supporter')) {
       throw new AppError('User not permitted', 401);
     }
 
