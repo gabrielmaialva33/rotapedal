@@ -5,6 +5,7 @@ import { classToClass } from 'class-transformer';
 import AuthenticateUserService from '@modules/users/services/user/AuthenticateUserService';
 import SessionCreate from '@modules/users/infra/http/controllers/validations/SessionsSchema';
 import AppError from '@shared/errors/AppError';
+import { string } from 'yup';
 
 class SessionsController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -22,7 +23,7 @@ class SessionsController {
       password,
     });
 
-    return response.json({ user: classToClass(user), token });
+    return response.cookie('token', token).json({ user: classToClass(user), token });
   }
 }
 export default new SessionsController();

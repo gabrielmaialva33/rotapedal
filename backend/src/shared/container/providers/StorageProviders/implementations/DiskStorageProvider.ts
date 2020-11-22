@@ -6,7 +6,7 @@ import IStorageProvider from '../models/IStorageProvider';
 class DiskStorageProvider implements IStorageProvider {
   public async saveFile(file: string): Promise<string> {
     if (file === 'default.png') {
-      await fs.promises.appendFile(
+      await fs.promises.copyFile(
         path.resolve(uploadConfig.tmpFolder, file),
         path.resolve(uploadConfig.uploadsFolder, file),
       );
@@ -16,7 +16,6 @@ class DiskStorageProvider implements IStorageProvider {
         path.resolve(uploadConfig.uploadsFolder, file),
       );
     }
-
     return file;
   }
 
