@@ -9,6 +9,15 @@ import AppError from '@shared/errors/AppError';
 import { SchemaAdd } from '@modules/users/infra/http/controllers/validations/TeamSchema';
 
 class UserTeamController {
+  public async show(request: Request, response: Response): Promise<Response> {
+    const user_id = request.user.id;
+    const showTeams = container.resolve(ShowUserTeamService);
+
+    const userTeams = await showTeams.execute(user_id);
+
+    return response.json(classToClass(userTeams));
+  }
+
   public async create(request: Request, response: Response): Promise<Response> {
     //* schema validation
     if (!(await SchemaAdd.isValid(request.body))) {
@@ -36,15 +45,6 @@ class UserTeamController {
     await removeUserTeam.execute({ email, team_id, user_id });
 
     return response.json({ message: 'User removed from team' });
-  }
-
-  public async show(request: Request, response: Response): Promise<Response> {
-    const user_id = request.user.id;
-    const showTeams = container.resolve(ShowUserTeamService);
-
-    const userTeams = await showTeams.execute(user_id);
-
-    return response.json(classToClass(userTeams));
   }
 }
 
