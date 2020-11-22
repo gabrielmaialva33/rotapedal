@@ -8,14 +8,14 @@ export const SchemaCreate = Yup.object().shape({
   difficult: Yup.string().required(),
   point_A: Yup.object()
     .shape({
-      latidute: Yup.number().required().nullable(false),
+      latitude: Yup.number().required().nullable(false),
       longitude: Yup.number().required().nullable(false),
     })
     .required()
     .nullable(false),
   point_B: Yup.object()
     .shape({
-      latidute: Yup.number().required().nullable(false),
+      latitude: Yup.number().required().nullable(false),
       longitude: Yup.number().required().nullable(false),
     })
     .required()
@@ -30,14 +30,14 @@ export const SchemaUpdate = Yup.object().shape({
   difficult: Yup.string(),
   point_A: Yup.object()
     .shape({
-      latidute: Yup.number().nullable(false),
+      latitude: Yup.number().nullable(false),
       longitude: Yup.number().nullable(false),
     })
 
     .nullable(false),
   point_B: Yup.object()
     .shape({
-      latidute: Yup.number().nullable(false),
+      latitude: Yup.number().nullable(false),
       longitude: Yup.number().nullable(false),
     })
 

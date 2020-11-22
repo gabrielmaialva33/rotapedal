@@ -6,6 +6,8 @@ import { classToClass } from 'class-transformer';
 import CreateSupporterService from '@modules/supporters/services/supporter/CreateSupporterService';
 import UpdateSupporterService from '@modules/supporters/services/supporter/UpdateSupporterService';
 import DestroySupporterService from '@modules/supporters/services/supporter/DestroySupporterService';
+import IndexSupporterService from '@modules/supporters/services/supporter/IndexSupporterService'
+
 import {
   SchemaCreate,
   SchemaUpdate,
@@ -13,6 +15,12 @@ import {
 import AppError from '@shared/errors/AppError';
 
 class SupporterController {
+  public async index(request: Request, response: Response): Promise<Response> {
+    const indexSupporter = container.resolve(IndexSupporterService);
+    const supporters = await indexSupporter.execute();
+    return response.json(classToClass(supporters));
+  }
+
   public async show(request: Request, response: Response): Promise<Response> {
     const { supporter_id } = request.params;
 
@@ -56,6 +64,8 @@ class SupporterController {
 
     const user_id = request.user.id;
     const { supporter_id } = request.params;
+
+    //todo update route_id
 
     const { name, phone, services, link, point } = request.body;
 

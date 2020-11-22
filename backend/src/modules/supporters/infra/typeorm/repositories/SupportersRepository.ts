@@ -18,6 +18,7 @@ class SupportersRepository implements ISupportersRepository {
     phone,
     services,
     link,
+    logo,
     point,
   }: ICreateSupporterDTO): Promise<Supporter> {
     const supporter = this.ormRepository.create({
@@ -25,6 +26,7 @@ class SupportersRepository implements ISupportersRepository {
       route_id,
       name,
       phone,
+      logo,
       services,
       link,
       point,
@@ -95,6 +97,25 @@ class SupportersRepository implements ISupportersRepository {
         'supporters.point',
       ])
       .where({ route_id })
+      .getMany();
+
+    return supporters;
+  }
+
+  public async listAllSupporter(): Promise<Supporter[] | undefined> {
+    const supporters = this.ormRepository
+      .createQueryBuilder('supporters')
+      .select([
+        'supporters.id',
+        'supporters.user_id',
+        'supporters.route_id',
+        'supporters.name',
+        'supporters.phone',
+        'supporters.services',
+        'supporters.logo',
+        'supporters.link',
+        'supporters.point',
+      ])
       .getMany();
 
     return supporters;

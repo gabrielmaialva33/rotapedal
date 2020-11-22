@@ -10,4 +10,5 @@ export default interface ISupportersRepository {
   findSupportByPhoneNumber(phone: string): Promise<Supporter | undefined>;
   findSupportByLink(link: string): Promise<Supporter | undefined>;
   listAllSupporterByRoute(route_id: string): Promise<Supporter[] | undefined>;
+  listAllSupporter(): Promise<Supporter[] | undefined>;
 }

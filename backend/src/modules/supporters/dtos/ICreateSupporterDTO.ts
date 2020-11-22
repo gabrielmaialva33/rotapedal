@@ -8,4 +8,5 @@ export default interface ICreateSupporterDTO {
   services: string;
   link: string;
   point: IPoint;
+  logo: string;
 }

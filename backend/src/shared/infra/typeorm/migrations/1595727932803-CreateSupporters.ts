@@ -26,11 +26,11 @@ export default class CreateSupporters1595727932803
           {
             name: 'user_id',
             type: 'uuid',
-            isNullable: true,
           },
           {
             name: 'route_id',
             type: 'uuid',
+            isNullable: true,
           },
           {
             name: 'name',

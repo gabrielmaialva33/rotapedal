@@ -8,7 +8,7 @@ export const SchemaCreate = Yup.object().shape({
   link: Yup.string().required(),
   point: Yup.object()
     .shape({
-      latidute: Yup.number().required().nullable(false),
+      latitude: Yup.number().required().nullable(false),
       longitude: Yup.number().required().nullable(false),
     })
     .required()
@@ -23,7 +23,7 @@ export const SchemaUpdate = Yup.object().shape({
   link: Yup.string(),
   point: Yup.object()
     .shape({
-      latidute: Yup.number().nullable(false),
+      latitude: Yup.number().nullable(false),
       longitude: Yup.number().nullable(false),
     })
 

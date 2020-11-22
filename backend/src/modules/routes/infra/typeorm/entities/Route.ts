@@ -12,7 +12,7 @@ enum DifficultEnum {
 }
 
 export interface IPoint {
-  latidute: number;
+  latitude: number;
   longitude: number;
 }
 
@@ -40,7 +40,7 @@ class Route {
     type: 'point',
     transformer: {
       from: v => v,
-      to: v => [v.latidute, v.longitude],
+      to: v => [v.latitude, v.longitude],
     },
   })
   point_A: IPoint;
@@ -49,7 +49,7 @@ class Route {
     type: 'point',
     transformer: {
       from: v => v,
-      to: v => [v.latidute, v.longitude],
+      to: v => [v.latitude, v.longitude],
     },
   })
   point_B: IPoint;

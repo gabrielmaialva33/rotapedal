@@ -38,7 +38,7 @@ class Event {
     type: 'point',
     transformer: {
       from: v => v,
-      to: v => [v.latidute, v.longitude],
+      to: v => [v.latitude, v.longitude],
     },
   })
   point: IPoint;

@@ -10,15 +10,19 @@ import uploadConfig from '@config/upload';
 const supportersRoutes = Router();
 
 supportersRoutes.get('/:supporter_id', SupporterController.show);
+supportersRoutes.get('/all/list', SupporterController.index)
 supportersRoutes.get('/list/:route_id', ListSupporterController.show);
 
 //* protected route
 supportersRoutes.use(ensureAuthenticated);
-supportersRoutes.post('/:route_id', SupporterController.create);
+supportersRoutes.post('/:route_id?', SupporterController.create);
 supportersRoutes.put('/:supporter_id', SupporterController.update);
 supportersRoutes.delete('/:supporter_id', SupporterController.delete);
 
-//* add logo supporter
+//* add logo supporter 
+
+//todo create default logo
+
 const upload = multer(uploadConfig.multer);
 supportersRoutes.patch(
   '/logo/:supporter_id',

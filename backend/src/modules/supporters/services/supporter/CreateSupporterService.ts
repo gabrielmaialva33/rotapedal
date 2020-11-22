@@ -6,6 +6,18 @@ import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import IRoutesRepository from '@modules/routes/repositories/IRoutesRepository';
 import Supporter from '@modules/supporters/infra/typeorm/entities/Supporter';
 import AppError from '@shared/errors/AppError';
+import IStorageProvider from '@shared/container/providers/StorageProviders/models/IStorageProvider';
+import { IPoint } from '@modules/routes/infra/typeorm/entities/Route';
+
+interface IRequest {
+  user_id: string;
+  route_id: string;
+  name: string;
+  phone: string;
+  services: string;
+  link: string;
+  point: IPoint
+}
 
 @injectable()
 class CreateSupporterService {
@@ -18,7 +30,10 @@ class CreateSupporterService {
 
     @inject('RoutesRepository')
     private routesRepository: IRoutesRepository,
-  ) {}
+
+    @inject('StorageProvider')
+    private storageProvider: IStorageProvider,
+  ) { }
 
   public async execute({
     user_id,
@@ -28,7 +43,7 @@ class CreateSupporterService {
     services,
     link,
     point,
-  }: ICreateSupporterDTO): Promise<Supporter> {
+  }: IRequest): Promise<Supporter> {
     const user = await this.usersRepository.findById(user_id);
     if (!user) {
       throw new AppError('User not found', 404);
@@ -38,7 +53,7 @@ class CreateSupporterService {
     }
 
     const route = await this.routesRepository.findRouteById(route_id);
-    if (!route) {
+    if (route_id && !route) {
       throw new AppError('Route not exists', 404);
     }
 
@@ -63,6 +78,8 @@ class CreateSupporterService {
       throw new AppError('Supporter link already exists', 409);
     }
 
+    const logo = await this.storageProvider.saveFile('default.png');
+
     const supporter = await this.supportersRepository.create({
       user_id,
       route_id,
@@ -70,6 +87,7 @@ class CreateSupporterService {
       phone,
       services,
       link,
+      logo,
       point,
     });
     return supporter;
