@@ -20,6 +20,5 @@ node_modules
 ormconfig.json
 
 # foders content
-!tmp/uploads/default.png
-!tmp/default.png
+!tmp/uploads/.gitignore
 tmp/uploads/**
